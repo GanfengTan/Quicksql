@@ -1,0 +1,245 @@
+{
+  "severName": "qsql",
+  "name": "information of rule config",
+  "keyWords": {
+    "ddl": {
+      "create": {
+        "table": {
+          "value": 4,
+          "status": 1,
+          "level": 1
+        },
+        "view": {
+          "value": 5,
+          "status": 1,
+          "level": 1
+        },
+        "index": {
+          "value": 6,
+          "status": 1,
+          "level": 1
+        },
+        "syn": {
+          "value": 7,
+          "status": 1,
+          "level": 1
+        },
+        "cluster": {
+          "value": 8,
+          "status": 1,
+          "level": 1
+        },
+        "database": {
+          "value": 9,
+          "status": 1,
+          "level": 1
+        },
+        "status": "1"
+      },
+      "desc": {
+        "desc": {
+          "value": 10,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "show": {
+        "show": {
+          "value": 11,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "drop": {
+        "drop": {
+          "value": 12,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "truncate": {
+        "truncate": {
+          "value": 13,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "aler table": {
+        "modify": {
+          "value": 14,
+          "status": 1,
+          "level": 1
+        },
+        "add": {
+          "value": 15,
+          "status": 1,
+          "level": 1
+        },
+        "drop": {
+          "value": 16,
+          "status": 1,
+          "level": 1
+        },
+        "change": {
+          "value": 17,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "describe": {
+        "describe": {
+          "value": 18,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "status": "1"
+    },
+    "dml": {
+      "insert": {
+        "insert": {
+          "value": 0,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "delete": {
+        "delete": {
+          "value": 1,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "update": {
+        "update": {
+          "value": 2,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "select": {
+        "select": {
+          "value": 3,
+          "status": 1,
+          "level": 1
+        },
+        "status": 1
+      },
+      "status": 1
+    },
+    "status": 1
+  },
+  "rules": {
+    "select": {
+      "*": {
+        "condition": "limit",
+        "include": 1,
+        "status": 0,
+        "level": 0
+      },
+      "select": {
+        "condition": "select",
+        "include": 0,
+        "subquery": 3,
+        "status": 1,
+        "level": 0
+      },
+      "status": 1
+    },
+    "join": {
+      "join": {
+        "condition": "join",
+        "keyNumber": 2,
+        "status": 1,
+        "level": 0
+      },
+      "status": 1
+    },
+    "insert": {
+      "insert": {
+        "condition": "select",
+        "include": 0,
+        "status": 1,
+        "level": 0
+      },
+      "status": 1
+    },
+    "update": {
+      "where": {
+        "condition": "where",
+        "include": 1,
+        "status": 1,
+        "level": 0
+      },
+      "order by": {
+        "condition": "order by",
+        "include": 0,
+        "status": 1,
+        "level": 0
+      },
+      "status": "1"
+    },
+    "delete": {
+      "where": {
+        "condition": "where",
+        "include": 1,
+        "status": 1,
+        "level": 0
+      },
+      "limit": {
+        "condition": "limit",
+        "include": 0,
+        "status": 1,
+        "level": 0
+      },
+      "order by": {
+        "condition": "order by",
+        "include": 0,
+        "status": 1,
+        "level": 0
+      },
+      "status": 1
+    },
+    "regular": {
+      "regulars": [
+        {
+          "condition": "/\\w*((\\%27)|(\\’))((\\%6F)|o|(\\%4F))((\\%72)|r|(\\%52))/ix",
+          "include": 0,
+          "status": 1,
+          "level": 0,
+          "function": "SQL Injection"
+        },
+        {
+          "condition": "/((\\%27)|(\\’))union/ix(\\%27)|(\\’)",
+          "include": 0,
+          "status": 1,
+          "level": 0,
+          "function": "UNION SQL Injection"
+        },
+        {
+          "condition": "^(.+)\\sand\\s(.+)|(.+)\\sor(.+)\\s$",
+          "include": 0,
+          "status": 1,
+          "level": 0,
+          "function": "SQL Injection"
+        }
+      ],
+      "status": 1
+    },
+    "status": 1
+  },
+  "symbol": {
+    "condition": "(--|#|//*)",
+    "status":1
+  },
+  "clazz": "com.qihoo.qsql.security.api.PresetSecurityStrategy"
+}
