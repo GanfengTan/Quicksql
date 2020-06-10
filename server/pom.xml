@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.qihoo.qsql</groupId>
+            <artifactId>security</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.calcite.avatica</groupId>
             <artifactId>avatica</artifactId>
             <version>${avatica.version}</version>

@@ -57,4 +57,8 @@ public class ResultBean<T> implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public boolean isSuccess() {
+        return this.code.equals(ErrorCode.NO_ERROR.code);
+    }
 }

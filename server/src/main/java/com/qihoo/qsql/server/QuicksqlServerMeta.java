@@ -15,6 +15,8 @@ import com.qihoo.qsql.client.QuicksqlConnectionImpl;
 import com.qihoo.qsql.client.QuicksqlResultSet;
 import com.qihoo.qsql.client.QuicksqlResultSet.QueryResult;
 import com.qihoo.qsql.org.apache.calcite.tools.YmlUtils;
+import com.qihoo.qsql.security.model.ResultBean;
+import com.qihoo.qsql.security.util.SecurityUtils;
 import com.qihoo.qsql.utils.HttpUtils;
 import com.qihoo.qsql.utils.SqlUtil;
 import java.lang.reflect.InvocationTargetException;
@@ -814,6 +816,10 @@ public class QuicksqlServerMeta implements ProtobufMeta {
                 String logicalPlanView = new SqlLogicalPlanView().getLogicalPlanView(sql.replaceAll("explain ",""));
                 resultSet = getResultSet(h, sql, 1, getExplainResult(logicalPlanView));
                 return new ExecuteResult(Collections.singletonList(resultSet));
+            }
+            ResultBean securityCheck = SecurityUtils.getSecurityCheck(sql);
+            if (!securityCheck.isSuccess()) {
+                throw new RuntimeException(securityCheck.getMessage());
             }
 
             int maxResNum = Integer
